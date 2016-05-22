@@ -1,0 +1,53 @@
+/// A variable that declare number of columns
+/// Used for grid creation
+///
+/// @group Variables
+$columns: 24 !default;
+
+/// A variable that declare padding between each column
+/// Used for grid creation
+///
+/// @group Variables
+$column-padding: 15px !default;
+
+/// A variable that declare media queries for extra small screens (phones).
+///
+/// @group Variables
+$media-screen-xs: 'only screen' 0px 768px !default;
+
+/// A variable that declare media queries for small screens (tablets).
+///
+/// @group Variables
+$media-screen-sm: 'only screen' 769px 991px !default;
+
+/// A variable that declare media queries for medium screens (desktops).
+///
+/// @group Variables
+$media-screen-md: 'only screen' 992px 1199px !default;
+
+/// A variable that declare media queries for large screens (desktops).
+///
+/// @group Variables
+$media-screen-lg: 'only screen' 1200px !default;
+
+/// A variable that declare default container width for extra small screens (phones).
+///
+/// @group Variables
+$container-width-xs: 100% !default;
+
+/// A variable that declare default container width for small screens (tablets).
+///
+/// @group Variables
+$container-width-sm: 750px !default;
+
+/// A variable that declare default container width for medium screens (desktops).
+///
+/// @group Variables
+$container-width-md: 970px !default;
+
+/// A variable that declare default container width for large screens (desktops).
+///
+/// @group Variables
+$container-width-lg: 1170px !default;
+
+@include breakpoint-set('to ems', true);

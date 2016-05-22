@@ -1,0 +1,15 @@
+/// Function for calculating widths of columns
+///
+/// @group Functions
+///
+/// @param {Number} $pos - Current position in for loop
+/// @param {Number} $out-of [12] - Column count
+///
+/// @example scss - Width calculation `.foo`
+///   .foo {
+///   	width: cp-in-grid(3, 12);
+///   }
+
+@function cp-column($pos, $out-of: $columns) {
+	@return $pos / $out-of * 100%;
+} 

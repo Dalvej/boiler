@@ -1,0 +1,150 @@
+/// Helper mixin to size elements in a single line.
+/// This mixin is essentially a short hand to define
+/// both `width` and `height` simultaneously.
+///
+/// @group Mixin
+///
+/// @param {Length} $width - Element's width
+/// @param {Length} $height [$width] - Element's height
+/// @output `width` and `height`
+///
+/// @example scss - Sizing `.foo`
+///   .foo {
+///     @include size(100%, 3em);
+///   }
+
+@mixin size($width, $height: $width) {
+	width: $width;
+	height: $height;
+}
+
+/// A mixin to clear floats
+///
+/// @group Mixin
+///
+/// @outputs Outputs a micro clearfix hack
+///
+/// @example scss - Cleafixing `.foo`
+///   .foo {
+///   	@include cf;
+///   }
+
+@mixin cf {
+	&:after {
+		content: "";
+		display: table;
+		clear: both;
+	}
+
+	&:before {
+		content: "";
+		display: table;
+		clear: both;
+	}
+}
+
+/// A mixin to make columns
+///
+/// @group Mixin
+///
+///
+/// @example scss - Column calculation `.foo`
+///   .foo {
+///   	@include column(1, 3);
+///   }
+@mixin column($pos, $out-of) {
+	width: cp-column($pos, $out-of);
+	min-height: 1px;
+	padding: 0 $column-padding 0 $column-padding;
+	float: left;
+}
+
+/// Fill the default container variables
+///
+/// @group Mixin
+///
+/// @example scss - Container sizing `.foo`
+///   .foo {
+///   	@include grid;
+///   }
+@mixin grid {
+	min-height: 1px;
+	margin: 0 auto;
+	padding: 0 $column-padding;
+}
+
+/// Make a fixed width container
+///
+/// @group Mixin
+///
+/// @example scss - Container sizing `.foo`
+///   .foo {
+///   	@include grid-fixed;
+///   }
+@mixin grid-fixed {
+	@include breakpoint($media-screen-xs) {
+		@include container-width('xs');
+	}	
+	
+	@include breakpoint($media-screen-sm) {
+		@include container-width('sm');
+	}
+
+	@include breakpoint($media-screen-md) {
+		@include container-width('md');
+	}
+
+	@include breakpoint($media-screen-lg) {
+		@include container-width('lg');
+	}
+}
+
+/// Make a full width container for grids
+///
+/// @group Mixin
+///
+/// @example scss - Container sizing `.foo`
+///   .foo {
+///   	@include grid-full;
+///   }
+@mixin grid-full {
+	width: cp-column(1, 1);
+}
+
+/// Makes a row for columns
+///
+/// @group Mixin
+///
+/// @example scss - Row calulation `.foo`
+///   .foo {
+///   	@include row;
+///   }
+@mixin row {
+	min-height: 1px;
+	// Making a row always full width
+	margin-left: -$column-padding;
+	margin-right: -$column-padding;
+
+	@include cf;
+}
+
+/// Returns the width of the fixed container according to the variable
+///
+/// @group Mixin
+///
+/// @example scss - Row calulation `.foo`
+///   .foo {
+///   	@include container-width('xs');
+///   }
+@mixin container-width($media) {
+	@if $media == 'xs' {
+		width: $container-width-xs;
+	} @else if $media == 'sm' {
+		width: $container-width-sm;
+	} @else if $media == 'md' {
+		width: $container-width-md;
+	} @else if $media == 'lg' {
+		width: $container-width-lg;
+	}
+}
+
